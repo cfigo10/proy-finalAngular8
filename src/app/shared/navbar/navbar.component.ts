@@ -11,5 +11,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+    shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 }
