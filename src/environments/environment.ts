@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://digimon-api.herokuapp.com/api'
+  api: 'https://digimon-api.herokuapp.com/api/digimon'
 };
 
 /*

@@ -1,13 +1,38 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <button mat-icon-button>
-        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-      </button>
-        <h1>Digimon</h1>
-        <span class="menu-spacer"></span>
-        <div>
-            <a mat-button [routerLink]="'/accounts'"> Accounts </a>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">Digimon</a>
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Notifications</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Switch account</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" [(ngModel)]="search" (ngModelChange)="searchEvent()" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="search" aria-label="Clear" (click)="searchEvent('')">Search</button>
+        </form> -->
+        <div class="search-box">
+            <input matInput class="search-input" type="text" [(ngModel)]="search" (ngModelChange)="searchEvent()" placeholder="Enter Digimon name or id..." />
+            <button mat-button class="close-button" *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="searchEvent('')">
+          <mat-icon>close</mat-icon>
+        </button>
         </div>
-    </mat-toolbar-row>
-</mat-toolbar>
+
+    </div>
+</nav>

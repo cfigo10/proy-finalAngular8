@@ -1,0 +1,56 @@
+<!-- <div class="tp-wrapper">
+    <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+        <div class="card" style="width: 18rem;">
+            <div class="tp-box__side tp-box__front">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                </ul>
+            </div>
+            <div class="tp-box__side tp-box__back">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<!-- <div class="tp-wrapper">
+	<div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+		<div class="tp-box__side tp-box__front">Front
+		</div>
+		<div class="tp-box__side tp-box__back">Back
+		</div>
+	</div>
+</div> -->
+
+<div class="tp-wrapper">
+    <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+        <div class="tp-box__side tp-box__front">
+            <mat-card class="example-card">
+                <img mat-card-image src="{{ digimon.img }}" alt="..">
+                <p style="font-size: 12px;"> Ver info
+                </p>
+            </mat-card>
+        </div>
+        <div class="tp-box__side tp-box__back">
+            <mat-card class="example-card">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="..">
+                <p style="font-size: 12px;"> asd
+                </p>
+            </mat-card>
+        </div>
+    </div>
+</div>

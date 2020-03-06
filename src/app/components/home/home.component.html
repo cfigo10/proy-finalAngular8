@@ -1,1 +1,30 @@
-<p>home works!</p>
+<div class="loading" *ngIf="">
+    <mat-spinner></mat-spinner>
+    LOADING
+</div>
+
+
+<div style="text-align:center">
+    <div class="grid-layout">
+        <div *ngFor="let digimon of digimons | search: query | idFilter: idFilters | levelFilter: levelFilters">
+            <div class="tp-wrapper">
+                <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+                    <div class="tp-box__side tp-box__front">
+                        <mat-card class="digimon-card">
+                            <img mat-card-image src="{{ digimon.img }}" alt="..">
+                            <p style="font-size: 12px;"> Ver info
+                            </p>
+                        </mat-card>
+                    </div>
+                    <div class="tp-box__side tp-box__back">
+                        <mat-card class="digimon-card">
+                            <img mat-card-image src="" alt="..">
+                            <p style="font-size: 12px;"> {{ digimon.id }}{{ digimon.name | titlecase }}
+                            </p>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
