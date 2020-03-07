@@ -24,7 +24,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class HomeComponent implements OnInit {
   
-  @Output() exportDigimons = new EventEmitter();
   public digimonsLoaded: boolean;
   public digimons: DigiDetails; 
   public query: string;
@@ -33,26 +32,6 @@ export class HomeComponent implements OnInit {
 
   public flip: string = 'inactive';
 
-
-  @Input() set search(newSearch: string) {
-    if (newSearch !== this.query) {
-      this.query = newSearch;
-    }
-  }
-
-  @Input() set idFilter(id: number) {
-    if (id !== this.idFilter) {
-      this.idFilters = id;
-    }
-  }
-
-  @Input() set levelFilter(levels: string) {
-    if (levels !== this.levelFilters) {
-      this.levelFilters = levels;
-    }
-  }
-
-
   constructor(
     private digimonService: DigimonService,
     protected helperService: HelperService) { }
@@ -60,6 +39,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.digimonsLoaded = false;
     this.getDigimons();
+    this.digimonService.searchChanged.subscribe(
+      (data) => {
+        this.query= data;
+
+      }
+    );
   }
 
   getDigimons(): void {
@@ -72,15 +57,6 @@ export class HomeComponent implements OnInit {
           this.helperService.notifyError();
         });
   }
-
-  // getDigimmonDetails(): void {
-   
-  // }
-
-  // getDigimmonSpeciesDetails(): void {
-   
-  // }
-  
 
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';

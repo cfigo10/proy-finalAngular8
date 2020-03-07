@@ -8,12 +8,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Notifications</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Switch account</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -24,11 +18,24 @@
             </li>
         </ul>
         <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" [(ngModel)]="search" (ngModelChange)="searchEvent()" placeholder="Buscar" aria-label="Search">
+            <input class="form-control mr-sm-2" level="text" [(ngModel)]="search" (ngModelChange)="searchEvent()" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="search" aria-label="Clear" (click)="searchEvent('')">Search</button>
         </form> -->
+
+        <div class="filter-component">
+            <mat-label class="filter" style="color: darkgray;">Filtrar por Nivel:</mat-label>
+            <mat-form-field class="form-field">
+                <mat-select [(ngModel)]="currentLevel" (ngModelChange)="onlevelSelected()">
+                    <mat-option>Ninguna</mat-option>
+                    <mat-option *ngFor="let level of levels" [value]="level">
+                        {{ level | titlecase }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
         <div class="search-box">
-            <input matInput class="search-input" type="text" [(ngModel)]="search" (ngModelChange)="searchEvent()" placeholder="Enter Digimon name or id..." />
+            <input matInput class="search-input" type="text" [(ngModel)]="search" (ngModelChange)="searchEvent($event)" placeholder="Busca por nombre Digimon o id..." />
             <button mat-button class="close-button" *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="searchEvent('')">
           <mat-icon>close</mat-icon>
         </button>

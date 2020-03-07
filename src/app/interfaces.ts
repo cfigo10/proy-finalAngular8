@@ -2,5 +2,9 @@ export interface DigiDetails {
   id: number;
   name: string;
   img: string;
-  level: Array<any>;
+  level: string;
+}
+
+export class AppConstants {
+  level: string;
 }

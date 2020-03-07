@@ -7,9 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Router
 import { AppRoutingModule } from './app-routing.module';
 
-//Services
-import { DigimonService } from './services/digimon.service';
-
 //Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -42,7 +39,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [DigimonService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
