@@ -3,8 +3,5 @@ export interface DigiDetails {
   name: string;
   img: string;
   level: string;
-}
-
-export class AppConstants {
-  level: string;
+  flip: any;
 }

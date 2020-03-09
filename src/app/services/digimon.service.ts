@@ -1,5 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject} from 'rxjs';
 import { DigiDetails } from '../interfaces';
@@ -44,7 +44,7 @@ export class DigimonService {
 
   public set levelSelected(r) {
     this._levelSelected = r;
-    setTimeout(() => { this.levelChanged.emit(true); }, 10);
+    setTimeout(() => { this.levelChanged.emit(r); }, 10);
   }
 
   getDigimon(): Observable <DigiDetails> {
@@ -61,8 +61,8 @@ export class DigimonService {
     return this.http.get<string>(`${this.digiAPI}/name/${name}`);
   }
 
-  getDigimonLevel(): Observable <any> {
-    
+  getDigimonLevel(level: string){
+    const params = new HttpParams().set('Level', level);
     return this.http.get<any>(`${this.digiAPI}/level/${level}`);
   }
 

@@ -6,9 +6,9 @@
 
 <div style="text-align:center">
     <div class="grid-layout">
-        <div *ngFor="let digimon of digimons | search: query ">
+        <div *ngFor="let digimon of digimons | search: query | levelFilter: levels">
             <div class="tp-wrapper">
-                <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+                <div class="tp-box" (click)="toggleFlip(digimon)" [@flipState]="digimon.flip">
                     <div class="tp-box__side tp-box__front">
                         <mat-card class="digimon-card">
                             <img mat-card-image src="{{ digimon.img }}" alt="..">
@@ -16,10 +16,10 @@
                             </p>
                         </mat-card>
                     </div>
-                    <div class="tp-box__side tp-box__back">
+                    <div class="tp-box__side tp-box__back" style="background-color: aliceblue;">
                         <mat-card class="digimon-card">
-                            <img mat-card-image src="" alt="..">
-                            <p style="font-size: 12px;"> {{ digimon.id }} {{digimon.level }} {{ digimon.name | titlecase }}
+                            <img mat-card-image src="../../../assets/logo.jpg" alt="..">
+                            <p style="font-size: 12px;"> {{ digimon.id }} - {{ digimon.name | titlecase }} | {{digimon.level }}
                             </p>
                         </mat-card>
                     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DigimonService } from 'src/app/services/digimon.service';
 import { DigiDetails } from 'src/app/interfaces'
 import { HelperService } from 'src/app/services/helper.service';
@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit {
   public digimonsLoaded: boolean;
   public digimons: DigiDetails; 
   public query: string;
-  public idFilters: number;
-  public levelFilters: string;
+  public levels: string;
 
-  public flip: string = 'inactive';
+
+  // public flip: string = 'inactive';
 
   constructor(
     private digimonService: DigimonService,
@@ -42,24 +42,38 @@ export class HomeComponent implements OnInit {
     this.digimonService.searchChanged.subscribe(
       (data) => {
         this.query= data;
-
       }
     );
+    this.digimonService.levelChanged.subscribe(
+      (data) => {
+        this.levels = data;
+        console.log('qwe', data);
+        
+      }
+    )
   }
 
   getDigimons(): void {
     this.digimonService.getDigimon().subscribe(
-      (data: DigiDetails) => {
+      (data) => {
         this.digimons = data;
         
+        this.digimons.forEach( digi => {
+          digi.flip = 'inactive';
+        });
+
         },
         (error) => {
           this.helperService.notifyError();
         });
   }
 
-  toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+  toggleFlip(digimon) {
+   console.log(digimon);
+   
+    digimon.flip = (digimon.flip == 'inactive') ? 'active' : 'inactive';
+    console.log(digimon.flip);
   }
+  
 
 }

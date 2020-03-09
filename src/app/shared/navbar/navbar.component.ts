@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { DigiDetails, AppConstants } from 'src/app/interfaces';
+import { DigiDetails } from 'src/app/interfaces';
 import { DigimonService } from 'src/app/services/digimon.service';
 
 @Component({
@@ -8,28 +8,25 @@ import { DigimonService } from 'src/app/services/digimon.service';
   styleUrls: ['./navbar.component.scss']
 })
 
-const APPCONSTANT = AppConstants;
 export class NavbarComponent implements OnInit {
   
    
   public search: string;
-  public levels: any;
-  public currentLevel: string;
+  public levels: Array<string>;
+  public currentLevel: string; 
+  public digimonList: any;
+  public levelName: string;
 
   constructor(private digimonService: DigimonService) { }
 
   ngOnInit() {
-    this.setDigimonLevel();
-    this.digimonService.levelSelected = this.levels;
-   console.log(this.levels);
-
-   this.digimonService.getDigimonLevel(this.levels).subscribe( (data) =>{
-    console.log('1',data);
-    
-    this.levels = data;
-  });
-   
-
+    this.levels = [];
+    this.digimonService.getDigimon().subscribe( 
+      (data: DigiDetails) =>{ 
+        this.digimonList = data;
+          
+        this.setDigimonLevel(this.digimonList);
+      });
   }
 
   searchEvent(search) {
@@ -40,13 +37,25 @@ export class NavbarComponent implements OnInit {
     console.log('asd',this.digimonService.searchSelected);
   }
 
-  setDigimonLevel(){
-  this.digimonService.getDigimonLevel(AppConstants).subscribe( (data) =>{
-    console.log('1',data);
+  setDigimonLevel(digimonList: DigiDetails): void {
     
-    this.levels = data;
-  });
-    
+    this.digimonList.forEach( (item) =>{
+      const nameLevel= item.level;
+      console.log(nameLevel);
+      
+      if (!this.levels.includes(nameLevel)){
+        this.levels.push(nameLevel);
+        this.levels.sort();
+      }
+    });
   }
+  
+  onLevelSelected(): void {
+    if(this.currentLevel) {
+      this.digimonService.levelSelected= this.currentLevel;
+    }else {
+      this.digimonService.levelSelected= '';
+    }
 
+  }
 }
